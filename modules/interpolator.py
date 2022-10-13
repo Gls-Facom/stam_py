@@ -39,10 +39,9 @@ class RBFInterpolator:
         self.nring = []
         for f in mesh.faces:
             nring = set()
-            nb = [mesh.find_one_ring(v) for v in f]
+            nb = [mesh.find_Nring(2, v, set()) for v in f]
             for n in nb:
-                for c in n:
-                    nring.add(c)
+                nring |= n
             self.nring.append(list(nring))
         self.nring = np.asarray(self.nring,dtype=object)
         self.rbf = []

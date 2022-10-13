@@ -36,7 +36,7 @@ f_fragment    = 'shaders/fluid.fs'
 q_vertex      = 'shaders/quiver.vs'
 q_fragment    = 'shaders/quiver.fs'
 q_geometry    = 'shaders/quiver.gs'
-solver = TriSolver('./assets/regular_tri_grid128.obj')
+solver = TriSolver('./assets/regular_tri_grid64.obj')
 simWindow = SimulationWindow(solver, f_vertex, f_fragment, q_vertex, q_fragment, q_geometry)
 frames = []
 
@@ -94,9 +94,9 @@ def on_draw(dt):
         if simWindow.save_video:
             dt = 1/60.0
             frames.append(np.asarray(pyglet.image.get_buffer_manager().get_color_buffer().get_image_data().get_data()))
-            profiler.enable()
-            simWindow.advance_frame(dt)
-            profiler.disable()
+        profiler.enable()
+        simWindow.advance_frame(dt,simWindow.frame)
+        profiler.disable()
     # render gui on top of everything
     try:
         imgui.render()

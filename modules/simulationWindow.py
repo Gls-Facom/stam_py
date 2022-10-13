@@ -61,6 +61,6 @@ class SimulationWindow:
         self.program["u_view"] = glm.translate(np.eye(4), self.view_matrix[0], self.view_matrix[1], self.view_matrix[2])
         self.quiver_program["u_view"] = glm.translate(np.eye(4), self.view_matrix[0], self.view_matrix[1], self.view_matrix[2])
 
-    def advance_frame(self, dt):
+    def advance_frame(self, dt, frame):
         self.frame += 1
-        self.solver.update_fields(dt)
+        self.solver.update_fields(dt, frame)
